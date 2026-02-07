@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, StyleSheet, Alert, ScrollView } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, Alert, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import { useState } from "react";
 import { saveLead } from "../storage/leadStorage";
 
@@ -37,59 +37,69 @@ export default function AddLeadScreen({ navigation }: any) {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.title}>Add New Lead</Text>
-        
-        <Text style={styles.label}>Name *</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter customer name"
-          value={name}
-          onChangeText={setName}
-        />
-        
-        <Text style={styles.label}>Email *</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter email address"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-        
-        <Text style={styles.label}>Phone *</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter phone number"
-          value={phone}
-          onChangeText={setPhone}
-          keyboardType="phone-pad"
-        />
-        
-        <Text style={styles.label}>Service *</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter service type"
-          value={service}
-          onChangeText={setService}
-        />
-        
-        <View style={styles.buttonContainer}>
-          <Button 
-            title="View Leads" 
-            onPress={() => navigation.navigate("Leads")}
-            color="#666"
+    <KeyboardAvoidingView 
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView 
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.card}>
+          <Text style={styles.title}>Add New Lead</Text>
+          
+          <Text style={styles.label}>Name *</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter customer name"
+            value={name}
+            onChangeText={setName}
           />
-          <Button 
-            title="Save Lead" 
-            onPress={submitLead}
-            color="#007AFF"
+          
+          <Text style={styles.label}>Email *</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter email address"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
           />
+          
+          <Text style={styles.label}>Phone *</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter phone number"
+            value={phone}
+            onChangeText={setPhone}
+            keyboardType="phone-pad"
+          />
+          
+          <Text style={styles.label}>Service *</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter service type"
+            value={service}
+            onChangeText={setService}
+            blurOnSubmit={false}
+          />
+          
+          <View style={styles.buttonContainer}>
+            <Button 
+              title="View Leads" 
+              onPress={() => navigation.navigate("Leads")}
+              color="#666"
+            />
+            <Button 
+              title="Save Lead" 
+              onPress={submitLead}
+              color="#007AFF"
+            />
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -98,9 +108,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    padding: 20,
+    paddingBottom: 100,
+  },
   card: {
     backgroundColor: 'white',
-    margin: 20,
     padding: 20,
     borderRadius: 10,
     shadowColor: '#000',
