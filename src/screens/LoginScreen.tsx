@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Alert } from "react-native";
+import { View, Text, TextInput, Button, Alert, StyleSheet } from "react-native";
 import { useState } from "react";
 
 export default function LoginScreen({ navigation }: any) {
@@ -9,28 +9,81 @@ export default function LoginScreen({ navigation }: any) {
     if (email === "admin@test.com" && password === "123456") {
       navigation.replace("AddLead");
     } else {
-      Alert.alert("Invalid Credentials");
+      Alert.alert("Invalid Credentials", "Use admin@test.com / 123456");
     }
   };
 
   return (
-    <View style={{ padding: 20 }}>
-      <Text>Email</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Lead Manager</Text>
+      <Text style={styles.subtitle}>Login to manage your leads</Text>
+      
+      <Text style={styles.label}>Email</Text>
       <TextInput
         value={email}
         onChangeText={setEmail}
-        style={{ borderWidth: 1, marginBottom: 10, padding: 8 }}
+        style={styles.input}
+        placeholder="admin@test.com"
+        keyboardType="email-address"
+        autoCapitalize="none"
       />
 
-      <Text>Password</Text>
+      <Text style={styles.label}>Password</Text>
       <TextInput
         secureTextEntry
         value={password}
         onChangeText={setPassword}
-        style={{ borderWidth: 1, marginBottom: 20, padding: 8 }}
+        style={styles.input}
+        placeholder="123456"
       />
 
-      <Button title="Login" onPress={handleLogin} />
+      <Button title="Login" onPress={handleLogin} color="#007AFF" />
+      
+      <Text style={styles.hint}>Hint: admin@test.com / 123456</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+    backgroundColor: '#f5f5f5',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 8,
+    color: '#333',
+  },
+  subtitle: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 30,
+    color: '#666',
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 8,
+    color: '#333',
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 15,
+    marginBottom: 20,
+    fontSize: 16,
+    backgroundColor: 'white',
+  },
+  hint: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 20,
+    color: '#999',
+    fontStyle: 'italic',
+  },
+});
