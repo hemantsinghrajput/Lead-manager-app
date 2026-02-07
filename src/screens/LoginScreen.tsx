@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Alert, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, Alert, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 import { useState } from "react";
 
 export default function LoginScreen({ navigation }: any) {
@@ -14,42 +14,50 @@ export default function LoginScreen({ navigation }: any) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Lead Manager</Text>
-      <Text style={styles.subtitle}>Login to manage your leads</Text>
-      
-      <Text style={styles.label}>Email</Text>
-      <TextInput
-        value={email}
-        onChangeText={setEmail}
-        style={styles.input}
-        placeholder="admin@test.com"
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+    <KeyboardAvoidingView 
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={styles.content}>
+        <Text style={styles.title}>Lead Manager</Text>
+        <Text style={styles.subtitle}>Login to manage your leads</Text>
+        
+        <Text style={styles.label}>Email</Text>
+        <TextInput
+          value={email}
+          onChangeText={setEmail}
+          style={styles.input}
+          placeholder="admin@test.com"
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
 
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-        style={styles.input}
-        placeholder="123456"
-      />
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+          style={styles.input}
+          placeholder="123456"
+        />
 
-      <Button title="Login" onPress={handleLogin} color="#007AFF" />
-      
-      <Text style={styles.hint}>Hint: admin@test.com / 123456</Text>
-    </View>
+        <Button title="Login" onPress={handleLogin} color="#007AFF" />
+        
+        <Text style={styles.hint}>Hint: admin@test.com / 123456</Text>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  content: {
+    flex: 1,
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
   },
   title: {
     fontSize: 28,
