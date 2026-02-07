@@ -54,6 +54,7 @@ export default function LeadsListScreen({ navigation }: any) {
       <TextInput
         style={styles.searchInput}
         placeholder="Search by name, email, or service..."
+        placeholderTextColor="#999"
         value={search}
         onChangeText={setSearch}
       />
@@ -123,6 +124,7 @@ const styles = StyleSheet.create({
     padding: 15,
     fontSize: 16,
     backgroundColor: 'white',
+    color: '#333',
   },
   list: {
     paddingHorizontal: 20,

@@ -53,6 +53,7 @@ export default function AddLeadScreen({ navigation }: any) {
           <TextInput
             style={styles.input}
             placeholder="Enter customer name"
+            placeholderTextColor="#999"
             value={name}
             onChangeText={setName}
           />
@@ -61,6 +62,7 @@ export default function AddLeadScreen({ navigation }: any) {
           <TextInput
             style={styles.input}
             placeholder="Enter email address"
+          placeholderTextColor="#999"
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
@@ -71,6 +73,7 @@ export default function AddLeadScreen({ navigation }: any) {
           <TextInput
             style={styles.input}
             placeholder="Enter phone number"
+          placeholderTextColor="#999"
             value={phone}
             onChangeText={setPhone}
             keyboardType="phone-pad"
@@ -80,6 +83,7 @@ export default function AddLeadScreen({ navigation }: any) {
           <TextInput
             style={styles.input}
             placeholder="Enter service type"
+          placeholderTextColor="#999"
             value={service}
             onChangeText={setService}
             blurOnSubmit={false}
@@ -146,6 +150,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
     backgroundColor: '#f9f9f9',
+    color: '#333',
   },
   buttonContainer: {
     flexDirection: 'row',

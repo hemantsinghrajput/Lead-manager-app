@@ -28,6 +28,7 @@ export default function LoginScreen({ navigation }: any) {
           onChangeText={setEmail}
           style={styles.input}
           placeholder="admin@test.com"
+          placeholderTextColor="#999"
           keyboardType="email-address"
           autoCapitalize="none"
         />
@@ -39,6 +40,7 @@ export default function LoginScreen({ navigation }: any) {
           onChangeText={setPassword}
           style={styles.input}
           placeholder="123456"
+          placeholderTextColor="#999"
         />
 
         <Button title="Login" onPress={handleLogin} color="#007AFF" />
@@ -86,6 +88,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
     backgroundColor: 'white',
+    color: '#333',
   },
   hint: {
     fontSize: 12,
